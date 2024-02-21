@@ -373,3 +373,90 @@ body {
   font-weight: var(--fw-medium);
   letter-spacing: var(--ls-p-050);
 }
+
+/* SideBar */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, max-content) 1fr max-content;
+  background-color: var(--surface-container-low);
+  max-width: var(--sidebar-width);
+  width: 100%;
+  padding: var(--spacing-3);
+  border-radius: 0 var(--radius-large) var(--radius-large) 0;
+  box-shadow: var(--shadow-3);
+  z-index: 4;
+  visibility: hidden;
+  transition: var(--tr-duration-long) var(--tr-easing-emphasized);
+  transition-property: transform, visibility;
+}
+
+.sidebar.active {
+  transform: translateX(100%);
+  visibility: visible;
+}
+
+.sidebar .fab {
+  display: none;
+}
+
+.sidebar > .wrapper {
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar > .wrapper-1 {
+  padding-inline: var(--spacing-4) var(--spacing-2);
+  margin-block-end: var(--spacing-3);
+}
+
+[data-theme="dark"] .logo-light,
+.logo-dark {
+  display: none;
+}
+
+[data-theme="dark"] .logo-dark {
+  display: block;
+}
+
+[data-theme="light"] .logo-light {
+  display: block;
+}
+
+/* ReUsed Styles */
+.material-symbols-rounded {
+  width: 1em;
+  height: 1em;
+  display: block;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+/* icon button */
+.icon-btn {
+  display: grid;
+  place-items: center;
+  color: var(--on-surface-variant);
+  border-radius: var(--radius-full);
+  --state-layer-bg: var(--on-surface-variant);
+}
+
+.icon-btn.large {
+  width: 40px;
+  height: 40px;
+}
+
+.icon-btn.small {
+  width: 28px;
+  height: 28px;
+}
+
+.icon-btn.small .material-symbols-rounded {
+  font-size: 1.8rem;
+}

@@ -44,7 +44,7 @@
     <script type="module" src="./src/js/app.js" defer></script>
   </head>
   <body>
-    <header class="sidebar" data-sidebar>
+    <header class="sidebar active" data-sidebar>
       <div class="wrapper wrapper-1">
         <a href="/">
           <img
@@ -79,7 +79,7 @@
       <div class="wrapper wrapper-2">
         <h2 class="text-title-small">NOTEBOOKS</h2>
         <button
-          class="icon-btn-small"
+          class="icon-btn small"
           data-tooltip="Create new notebook"
           aria-label="Create new notebook"
           data-add-notebook
@@ -120,6 +120,13 @@
           <div class="state-layer"></div>
         </div>
       </nav>
+      <div class="cp-info">
+        <span class="text-label-large"
+          >Copyright 2024 <strong>Pranjal Jamuar</strong></span
+        >
+      </div>
     </header>
+
+    <div class="overlay" data-sidebar-overlay data-sidebar-toggler></div>
   </body>
 </html>
