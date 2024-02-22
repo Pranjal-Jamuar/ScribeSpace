@@ -205,7 +205,33 @@
       </button>
 
       <div class="modal">
-        <button class="icon-btn large"></button>
+        <button class="icon-btn large" aria-label="Close modal">
+          <span class="material-symbols-rounded" aria-hidden="true">close</span>
+
+          <div class="state-layer"></div>
+        </button>
+
+        <input
+          type="text"
+          placeholder="Untitled"
+          value="Untitled"
+          class="modal-title text-title-medium"
+          data-note-field
+        />
+
+        <textarea
+          placeholder="Take a note..."
+          class="modal-text text-body-large custom-scrollbar"
+          data-note-field
+        ></textarea>
+        <div class="modal-footer">
+          <span class="time text-label-large">20 mins ago</span>
+          <button class="btn text" data-submit-btn>
+            <span class="text-label-large">Save</span>
+
+            <div class="state-layer"></div>
+          </button>
+        </div>
       </div>
     </main>
   </body>
