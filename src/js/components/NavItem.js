@@ -1,7 +1,9 @@
 "use strict"
 
 import { Tooltip } from "./Tooltip.js"
-import { activeNotebook } from "../utils.js"
+import { activeNotebook, makeElementEditable } from "../utils.js"
+import { database } from "../db.js"
+import { client } from "../client.js"
 
 const notePanelTitle = document.querySelector("[data-note-panel-title]")
 
@@ -50,5 +52,29 @@ export const NavItem = function (id, name) {
     activeNotebook.call(this)
   })
 
+  /**
+   * Notebook edit functionality
+   */
+  const navItemEditBtn = navItem.querySelector("[data-edit-btn]")
+  const navItemField = navItem.querySelector("[data-notebook-field]")
+
+  navItemEditBtn.addEventListener(
+    "click",
+    makeElementEditable.bind(null, navItemField)
+  )
+  navItemField.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      this.removeAttribute("contenteditable")
+
+      //Update edited data in database
+      const updatedNotebookData = database.update.noteboook(
+        id,
+        this.textContent
+      )
+
+      //Render updated notebook
+      client.notebook.update(id, updatedNotebookData)
+    }
+  })
   return navItem
 }

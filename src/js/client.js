@@ -40,5 +40,21 @@ export const client = {
         sidebarList.appendChild(navItem)
       })
     },
+
+    /**
+     *
+     * @param {string} notebookId - id of the notebook to be updated
+     * @param {Object} notebookData - new data for the notebook
+     */
+    update(notebookId, notebookData) {
+      const oldNotebook = document.querySelector(
+        `[data-notebook="${notebookId}"]`
+      )
+      const newNotebook = NavItem(notebookData.id, notebookData.name)
+
+      notePanelTitle.textContent = notebookData.name
+      sidebarList.replaceChild(newNotebook, oldNotebook)
+      activeNotebook.call(newNotebook)
+    },
   },
 }

@@ -1,6 +1,6 @@
 "use strict"
 
-import { generateID } from "./utils.js"
+import { generateID, findNotebook } from "./utils.js"
 
 let keepNotesDataBase = {}
 const initDataBase = function () {
@@ -73,6 +73,24 @@ export const database = {
       readDataBase()
 
       return keepNotesDataBase.notebooks
+    },
+  },
+  update: {
+    /**
+     * @function
+     * @param {string} notebookId - the id to update
+     * @param {string} name - the new name
+     * @returns {object} - updated notebook object
+     */
+    noteboook(notebookId, name) {
+      readDataBase()
+
+      const notebook = findNotebook(keepNotesDataBase, notebookId)
+      notebook.name = name
+
+      writeDataBase()
+
+      return notebook
     },
   },
 }
