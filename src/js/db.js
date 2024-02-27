@@ -1,6 +1,6 @@
 "use strict"
 
-import { generateID, findNotebook } from "./utils.js"
+import { generateID, findNotebook, findNotebookIndex } from "./utils.js"
 
 let keepNotesDataBase = {}
 const initDataBase = function () {
@@ -91,6 +91,16 @@ export const database = {
       writeDataBase()
 
       return notebook
+    },
+  },
+  delete: {
+    notebook(notebookId) {
+      readDataBase()
+
+      const notebookIndex = findNotebookIndex(keepNotesDataBase, notebookId)
+      keepNotesDataBase.notebooks.splice(notebookIndex, 1)
+
+      writeDataBase()
     },
   },
 }

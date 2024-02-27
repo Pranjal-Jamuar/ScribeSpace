@@ -71,6 +71,17 @@ const findNotebook = function (db, notebookId) {
   return db.notebooks.find(notebook => notebook.id === notebookId)
 }
 
+/**
+ *
+ * @param {object} db - the objedct containing the array of notebooks.
+ * @param {string} notebookId - ID of the notebook to find.
+ * @returns {number} The index of the found notebook or -1 if not found.
+ */
+
+const findNotebookIndex = function (db, notebookId) {
+  return db.notebooks.findIndex(item => item.id === notebookId)
+}
+
 export {
   addEventOnelements,
   getGreetingMsg,
@@ -78,4 +89,5 @@ export {
   makeElementEditable,
   generateID,
   findNotebook,
+  findNotebookIndex,
 }

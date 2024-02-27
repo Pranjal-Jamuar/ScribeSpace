@@ -4,6 +4,7 @@ import { Tooltip } from "./Tooltip.js"
 import { activeNotebook, makeElementEditable } from "../utils.js"
 import { database } from "../db.js"
 import { client } from "../client.js"
+import { DeleteConfirmModal } from "./Modal.js"
 
 const notePanelTitle = document.querySelector("[data-note-panel-title]")
 
@@ -76,5 +77,24 @@ export const NavItem = function (id, name) {
       client.notebook.update(id, updatedNotebookData)
     }
   })
+
+  /**
+   * Notebook Delete Functionality
+   */
+
+  const navItemDeleteBtn = navItem.querySelector("[data-delete-btn]")
+  navItemDeleteBtn.addEventListener("click", function () {
+    const modal = DeleteConfirmModal(name)
+
+    modal.open()
+    modal.onSubmit(function (isConfirm) {
+      if (isConfirm) {
+        database.delete.notebook(id)
+      }
+
+      modal.close()
+    })
+  })
+
   return navItem
 }
