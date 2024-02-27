@@ -34,4 +34,36 @@ const getGreetingMsg = function (currentHour) {
   return `Good ${greeting}`
 }
 
-export { addEventOnelements, getGreetingMsg }
+let lastActiveNavitem
+const activeNotebook = function () {
+  lastActiveNavitem?.classList.remove("active")
+  this.classList.add("active")
+  lastActiveNavitem = this
+}
+
+/**
+ *
+ * @param {HTMLElement} element - The DOM element to make it editable
+ */
+
+const makeElementEditable = function (element) {
+  element.setAttribute("contenteditable", true)
+  element.focus()
+}
+
+/**
+ * generates unique ID on the basis of the current timestamp
+ *
+ * @returns {string} A string representation of the current timestamp.
+ */
+const generateID = function () {
+  return new Date().getTime().toString()
+}
+
+export {
+  addEventOnelements,
+  getGreetingMsg,
+  activeNotebook,
+  makeElementEditable,
+  generateID,
+}
