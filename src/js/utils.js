@@ -2,13 +2,13 @@
 
 /**
  *
- * @param {Array<HTMLElement>} $elements
+ * @param {Array<HTMLElement>} elements
  * @param {string} eventType
  * @param {Function} callback
  */
 
-const addEventOnelements = function ($elements, eventType, callback) {
-  $elements.forEach($element => $element.addEventListener(eventType, callback))
+const addEventOnelements = function (elements, eventType, callback) {
+  elements.forEach(element => element.addEventListener(eventType, callback))
 }
 
 /**
