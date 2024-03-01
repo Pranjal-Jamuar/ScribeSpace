@@ -98,6 +98,19 @@ export const database = {
 
       return keepNotesDataBase.notebooks
     },
+
+    /**
+     *
+     * @function
+     * @param {string} notebookId - The ID of the notebook to retrieve notes from.
+     * @returns {Array<Object>} Aan array of  note objects.
+     */
+    note(notebookId) {
+      readDataBase()
+
+      const notebook = findNotebook(keepNotesDataBase, notebookId)
+      return notebook.notes
+    },
   },
   update: {
     /**

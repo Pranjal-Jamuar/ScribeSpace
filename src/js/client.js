@@ -7,6 +7,12 @@ import { Card } from "./components/Card.js"
 const sidebarList = document.querySelector("[data-sidebar-list]")
 const notePanelTitle = document.querySelector("[data-note-panel-title]")
 const notePanel = document.querySelector("[data-note-panel]")
+const emptyNotesTemplate = `<div class="empty-notes">
+<span class="material-symbols-rounded" aria-hidden="true"
+  >note_stack</span
+>
+<div class="text-headline-small">No notes</div>
+</div> `
 /**
  * @namespace
  * @property {object} notebook - for managing notebooks in the UI
@@ -86,6 +92,19 @@ export const client = {
       //Append card in notePanel
       const card = Card(noteData)
       notePanel.appendChild(card)
+    },
+
+    read(noteList) {
+      if (noteList.length) {
+        notePanel.innerHTML = ""
+
+        noteList.forEach(noteData => {
+          const card = Card(noteData)
+          notePanel.appendChild(card)
+        })
+      } else {
+        notePanel.innerHTML = emptyNotesTemplate
+      }
     },
   },
 }

@@ -112,3 +112,23 @@ addEventOnelements(noteCreateBtns, "click", function () {
     modal.close()
   })
 })
+
+/**
+ * Render existing notes in the active notebook.
+ * Retrieves note data from the database based on the active notebook's ID
+ * and uses the client to display the notes.
+ */
+
+const renderExistingNote = () => {
+  const activeNotebookId = document.querySelector("[data-notebook].active")
+    ?.dataset.notebook
+
+  if (activeNotebookId) {
+    const noteList = database.get.note(activeNotebookId)
+
+    //Display the notes
+    client.note.read(noteList)
+  }
+}
+
+renderExistingNote()
