@@ -2,6 +2,9 @@
 
 import { getRelativeTime } from "../utils.js"
 import { Tooltip } from "./Tooltip.js"
+import { NoteModal } from "./Modal.js"
+import { database } from "../db.js"
+import { client } from "../client.js"
 
 /**
  *
@@ -37,6 +40,19 @@ export const Card = function (noteData) {
   `
 
   Tooltip(card.querySelector("[data-tooltip]"))
+
+  card.addEventListener("click", () => {
+    const modal = NoteModal(title, text, getRelativeTime(postedOn))
+    modal.open()
+
+    modal.onSubmit(noteData => {
+      const updatedData = database.update.note(id, noteData)
+
+      //Update the note in the client UI.
+      client.note.update(id, updatedData)
+      modal.close()
+    })
+  })
 
   return card
 }

@@ -122,5 +122,11 @@ export const client = {
         notePanel.innerHTML = emptyNotesTemplate
       }
     },
+
+    update(noteID, noteData) {
+      const oldCard = document.querySelector(`[data-note="${noteID}"]`)
+      const newCard = Card(noteData)
+      notePanel.replaceChild(newCard, oldCard)
+    },
   },
 }

@@ -103,6 +103,21 @@ const getRelativeTime = ms => {
     : `${day} days ago`
 }
 
+/**
+ *
+ * @param {Object} db
+ * @param {string} noteID
+ * @returns {Object | undefined} The found note object or undefined if not found.
+ */
+const findNote = (db, noteID) => {
+  let note
+  for (const notebook of db.notebooks) {
+    note = notebook.notes.find(note => note.id === noteID)
+    if (note) break
+  }
+  return note
+}
+
 export {
   addEventOnelements,
   getGreetingMsg,
@@ -112,4 +127,5 @@ export {
   findNotebook,
   findNotebookIndex,
   getRelativeTime,
+  findNote,
 }
