@@ -741,17 +741,9 @@ body {
   margin-block-end: var(--spacing-3);
 }
 
-[data-theme="dark"] .logo-light,
-.logo-dark {
-  display: none;
-}
-
-[data-theme="dark"] .logo-dark {
-  display: block;
-}
-
-[data-theme="light"] .logo-light {
-  display: block;
+.logo {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .sidebar > .wrapper-2 {
