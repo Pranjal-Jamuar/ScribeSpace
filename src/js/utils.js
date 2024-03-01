@@ -118,6 +118,16 @@ const findNote = (db, noteID) => {
   return note
 }
 
+/**
+ *
+ * @param {object} notebook
+ * @param {string} noteID
+ * @returns {number} The index of the found note or -1 if not found
+ */
+const findNoteIndex = (notebook, noteID) => {
+  return notebook.notes.findIndex(note => note.id === noteID)
+}
+
 export {
   addEventOnelements,
   getGreetingMsg,
@@ -128,4 +138,5 @@ export {
   findNotebookIndex,
   getRelativeTime,
   findNote,
+  findNoteIndex,
 }

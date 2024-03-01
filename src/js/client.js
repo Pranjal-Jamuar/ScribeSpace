@@ -107,7 +107,7 @@ export const client = {
 
       //Append card in notePanel
       const card = Card(noteData)
-      notePanel.appendChild(card)
+      notePanel.prepend(card)
     },
 
     read(noteList) {
@@ -127,6 +127,16 @@ export const client = {
       const oldCard = document.querySelector(`[data-note="${noteID}"]`)
       const newCard = Card(noteData)
       notePanel.replaceChild(newCard, oldCard)
+    },
+
+    /**
+     *
+     * @param {string} noteID
+     * @param {boolean} doesNoteExists
+     */
+    delete(noteID, doesNoteExists) {
+      document.querySelector(`[data-note="${noteID}"]`).remove()
+      if (!doesNoteExists) notePanel.innerHTML = emptyNotesTemplate
     },
   },
 }

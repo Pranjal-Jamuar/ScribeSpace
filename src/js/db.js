@@ -5,6 +5,7 @@ import {
   findNotebook,
   findNotebookIndex,
   findNote,
+  findNoteIndex,
 } from "./utils.js"
 
 let keepNotesDataBase = {}
@@ -160,6 +161,17 @@ export const database = {
       keepNotesDataBase.notebooks.splice(notebookIndex, 1)
 
       writeDataBase()
+    },
+
+    note(notebookId, noteID) {
+      readDataBase()
+
+      const notebook = findNotebook(keepNotesDataBase, notebookId)
+      const noteIndex = findNoteIndex(notebook, noteID)
+      notebook.notes.splice(noteIndex, 1)
+
+      writeDataBase()
+      return notebook.notes
     },
   },
 }
