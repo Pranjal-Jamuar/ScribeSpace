@@ -90,6 +90,7 @@ export const NavItem = function (id, name) {
     modal.onSubmit(function (isConfirm) {
       if (isConfirm) {
         database.delete.notebook(id)
+        client.notebook.delete(id)
       }
 
       modal.close()

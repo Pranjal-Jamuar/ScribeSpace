@@ -9,6 +9,7 @@ import {
 import { Tooltip } from "./components/Tooltip.js"
 import { database } from "./db.js"
 import { client } from "./client.js"
+import { NoteModal } from "./components/Modal.js"
 
 const sidebar = document.querySelector("[data-sidebar]")
 const sidebarTogglers = document.querySelectorAll("[data-sidebar-toggler]")
@@ -88,3 +89,26 @@ const renderExistingNotebook = function () {
 }
 
 renderExistingNotebook()
+
+/**
+ * Create new note
+ *
+ * Event Listeners to a collection of DOM elements representing "Create Note" buttons.
+ * When a button is pressed, it opens a modal for creating a new note and handles the submission of the new note to the database and client.
+ */
+
+const noteCreateBtns = document.querySelectorAll("[data-note-create-btn]")
+
+addEventOnelements(noteCreateBtns, "click", function () {
+  //Create and add new modal
+  const modal = NoteModal()
+  modal.open()
+  modal.onSubmit(noteObj => {
+    const activeNotebookId = document.querySelector("[data-notebook].active")
+      .dataset.notebook
+
+    const noteData = database.post.note(activeNotebookId, noteObj)
+    client.note.create(noteData)
+    modal.close()
+  })
+})

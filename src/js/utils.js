@@ -82,6 +82,27 @@ const findNotebookIndex = function (db, notebookId) {
   return db.notebooks.findIndex(item => item.id === notebookId)
 }
 
+/**
+ *
+ * @param {number} ms - the timestamp in milliseconds to convert.
+ * @returns {string} - A string representing the relative time.
+ */
+const getRelativeTime = ms => {
+  const currentTime = new Date().getTime()
+
+  const minute = Math.floor((currentTime - ms) / 1000 / 60)
+  const hour = Math.floor(minute / 60)
+  const day = Math.floor(hour / 24)
+
+  return minute < 1
+    ? "Just now"
+    : minute < 60
+    ? `${minute} mins ago`
+    : hour < 24
+    ? `${hour} hours ago`
+    : `${day} days ago`
+}
+
 export {
   addEventOnelements,
   getGreetingMsg,
@@ -90,4 +111,5 @@ export {
   generateID,
   findNotebook,
   findNotebookIndex,
+  getRelativeTime,
 }

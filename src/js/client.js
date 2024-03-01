@@ -2,10 +2,11 @@
 
 import { NavItem } from "./components/NavItem.js"
 import { activeNotebook } from "./utils.js"
+import { Card } from "./components/Card.js"
 
 const sidebarList = document.querySelector("[data-sidebar-list]")
 const notePanelTitle = document.querySelector("[data-note-panel-title]")
-
+const notePanel = document.querySelector("[data-note-panel]")
 /**
  * @namespace
  * @property {object} notebook - for managing notebooks in the UI
@@ -55,6 +56,36 @@ export const client = {
       notePanelTitle.textContent = notebookData.name
       sidebarList.replaceChild(newNotebook, oldNotebook)
       activeNotebook.call(newNotebook)
+    },
+
+    /**
+     *
+     * @param {string} notebookId - ID of the notebook to be deleted
+     */
+    delete(notebookId) {
+      const deletedNotebook = document.querySelector(
+        `[data-notebook="${notebookId}"]`
+      )
+      const activeNavitem =
+        deletedNotebook.nextElementSibling ??
+        deletedNotebook.previousElementSibling
+
+      if (activeNavitem) {
+        activeNavitem.click()
+      } else {
+        notePanelTitle.innerHTML = ""
+        // notePanel.innerHTML = ""
+      }
+
+      deletedNotebook.remove()
+    },
+  },
+
+  note: {
+    create(noteData) {
+      //Append card in notePanel
+      const card = Card(noteData)
+      notePanel.appendChild(card)
     },
   },
 }

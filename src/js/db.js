@@ -63,6 +63,30 @@ export const database = {
 
       return notebookData
     },
+
+    /**
+     *
+     * @function
+     * @param {string} notebookId - The ID of the notebook to add.
+     * @param {Object} object - The note object to add.
+     * @returns {Object} The newly created note.
+     */
+    note(notebookId, object) {
+      readDataBase()
+
+      const notebook = findNotebook(keepNotesDataBase, notebookId)
+      const noteData = {
+        id: generateID(),
+        notebookId,
+        ...object,
+        postedOn: new Date().getTime(),
+      }
+
+      notebook.notes.unshift(noteData)
+      writeDataBase()
+
+      return noteData
+    },
   },
   get: {
     /**
