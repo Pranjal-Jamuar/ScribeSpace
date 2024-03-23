@@ -29,6 +29,10 @@ ScribeSpace is versatile:
 - Utilizes local storage to save notes directly in the browser.
 - Built with pure HTML5, CSS3, and JavaScript.
 
+## Live Demo Link
+
+[ScribeSpace Live](https://pranjal-jamuar.github.io/ScribeSpace/) - Bookmark this page for quick access in the future.
+
 ## How to Run It
 
 1. **To run a local copy**: Clone this repository or download the ZIP file.
